@@ -1,0 +1,5 @@
+#!/bin/bash
+# 
+# USAGE: find-last-modified [<location>] [<number of last modified files>]
+
+find ${1:-.} -type f 2> /dev/null| xargs stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head -${2:-30} 
